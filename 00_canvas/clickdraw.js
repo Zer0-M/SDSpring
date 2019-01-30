@@ -3,7 +3,8 @@ var clearb=document.getElementById("clear");
 var rectb=document.getElementById("rectmode");
 var dotb=document.getElementById("dotmode");
 var ctx=canvas.getContext("2d");
-var rectangle=true;
+var box=true;
+
 clearb.addEventListener(
     "click",
     function(){
@@ -15,7 +16,7 @@ canvas.addEventListener(
     function(e){
         console.log(e);
         var rect=canvas.getBoundingClientRect();
-        if(rectangle){
+        if(box){
            ctx.fillRect(e.pageX-rect.left,e.pageY-rect.top,10,10);
         }
         else{
@@ -30,7 +31,7 @@ canvas.addEventListener(
 dotb.addEventListener(
     "click",
     ()=>{
-        rectangle=false;
+        box=false;
         rectb.removeAttribute("hidden");
         dotb.setAttribute("hidden",true);
     }
@@ -38,7 +39,7 @@ dotb.addEventListener(
 rectb.addEventListener(
     "click",
     ()=>{
-        rectangle=true;
+        box=true;
         dotb.removeAttribute("hidden");
         rectb.setAttribute("hidden",true);
     }
