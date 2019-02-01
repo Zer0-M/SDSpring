@@ -12,8 +12,8 @@ var prev_y;
 
 document.getElementById("clear").onclick = function()
 {
-    prev_x=-1;
-    prev_y=-1;
+    prev_x=NaN;
+    prev_y=NaN;
     ctx.clearRect(0, 0, c.width, c.height);
 }
 
@@ -36,14 +36,13 @@ var draw = function(e)
     // console.log("prev:", prev_x, prev_y);
 
     // Initialize path that will be drawn
-    if(prev_x>=0&prev_y>=0){
-        ctx.beginPath();
-        ctx.moveTo(x, y);
-        ctx.lineTo(prev_x, prev_y);
-        ctx.stroke();
-        draw_circle(prev_x, prev_y);
-    }
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(prev_x, prev_y);
+    ctx.stroke();
+
     draw_circle(x, y);
+    draw_circle(prev_x, prev_y);
 
     prev_x = x;
     prev_y = y;
