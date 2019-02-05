@@ -13,7 +13,6 @@ var ctx = canvas.getContext('2d');
 var requestID;
 var radius = 0;
 var growing = true;
-var clicked;
 
 function clear() {
 
@@ -23,13 +22,14 @@ function clear() {
 }
 
 function animate(e) {
+    window.cancelAnimationFrame(requestID);
     clear();
     make_circle();
     requestID = window.requestAnimationFrame(animate);
 }
 
 function stopIt() {
-    cancelAnimationFrame(requestID);
+    window.cancelAnimationFrame(requestID);
 }
 
 
@@ -51,15 +51,5 @@ function make_circle() {
         radius -= 5;
     }
 }
-button.addEventListener('click', ()=>{
-    if(!clicked){
-        animate();
-    }
-    clicked=true;
-});
-stop.addEventListener('click', ()=>{
-    if(clicked){
-        stopIt();
-    }
-    clicked=false;
-});
+button.addEventListener('click', animate);
+stop.addEventListener('click', stopIt);
