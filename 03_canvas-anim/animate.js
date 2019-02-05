@@ -57,4 +57,9 @@ button.addEventListener('click', ()=>{
     }
     clicked=true;
 });
-stop.addEventListener('click', stopIt);
+stop.addEventListener('click', ()=>{
+    if(clicked){
+        stopIt();
+    }
+    clicked=false;
+});
