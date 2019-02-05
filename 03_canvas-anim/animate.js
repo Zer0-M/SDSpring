@@ -13,20 +13,12 @@ var ctx = canvas.getContext('2d');
 var requestID;
 var radius = 0;
 var growing = true;
+var clicked;
 
 function clear() {
-    if (canvas.width / 2 == radius) {
-        growing = false;
-    }
-    if (radius <= 0) {
-        growing = true;
-    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (growing) {
-        radius += 5;
-    } else {
-        radius -= 5;
-    }
+
     return true;
 }
 
@@ -42,11 +34,27 @@ function stopIt() {
 
 
 function make_circle() {
+    if (canvas.width / 2 == radius) {
+        growing = false;
+    }
+    if (radius <= 0) {
+        growing = true;
+    }
     ctx.beginPath();
     ctx.arc(canvas.width / 2, canvas.height / 2, radius, 0, 2 * Math.PI);
     ctx.stroke();
     ctx.fillStyle = "#00ffff";
     ctx.fill();
+    if (growing) {
+        radius += 5;
+    } else {
+        radius -= 5;
+    }
 }
-button.addEventListener('click', animate);
+button.addEventListener('click', ()=>{
+    if(!clicked){
+        animate();
+    }
+    clicked=true;
+});
 stop.addEventListener('click', stopIt);
