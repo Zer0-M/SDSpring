@@ -1,5 +1,5 @@
 /*
-Team Imaginamation - Mohammed Jamil, Ahnaf Hasan
+Team Blockbuster - Mohammed Jamil, Ahnaf Hasan
 SoftDev2 pd6
 K03 - They lock us in the tower whenever we get caught ...which is often
 2019-02-04
@@ -52,34 +52,35 @@ function make_circle() {
         radius -= 5;
     }
 }
-var rectWidth =100;
-var rectHeight=50;
 
-var rectX=Math.floor(Math.random() * (canvas.width-rectWidth));
-var rectY=Math.floor(Math.random() * (canvas.height-rectHeight));
-var velX=5;
-var velY=5;
-function drawImage(){
-    var img = new Image();
-    img.onload=function(){
-        clear();
-        ctx.drawImage(img,rectX,rectY,rectWidth,rectHeight);
-    };
-    img.src="logo_dvd.jpg";
-    rectX+=velX;
-    rectY+=velY;
-    if(rectX+velX+rectWidth-15>canvas.width||rectX+velX+15<=0){
-        velX=-velX;
-    }
-    if(rectY+velY+rectHeight-15>canvas.height||rectY+velY+15<=0){
-        velY=-velY;
-    }
-}
 function dvdSetup(){
     window.cancelAnimationFrame(requestID)
-    drawImage();
+    var rectWidth =100;
+    var rectHeight=50;
+
+    var rectX=Math.floor(Math.random() * (canvas.width-rectWidth));
+    var rectY=Math.floor(Math.random() * (canvas.height-rectHeight));
+
+    var velX=5;
+    var velY=5;
     var dvdLogo =function(){
-        requestID=window.requestAnimationFrame(dvdSetup);
+        var img = new Image();
+        img.onload=function(){
+            clear();
+            ctx.drawImage(img,rectX,rectY,rectWidth,rectHeight);
+        };
+        img.src="logo_dvd.jpg";
+
+        rectX+=velX;
+        rectY+=velY;
+        if(rectX+velX+rectWidth-15>canvas.width||rectX+velX+15<=0){
+            velX=-velX;
+        }
+        if(rectY+velY+rectHeight-15>canvas.height||rectY+velY+15<=0){
+            velY=-velY;
+        }
+
+        requestID=window.requestAnimationFrame(dvdLogo);
     }
     dvdLogo();
 }
