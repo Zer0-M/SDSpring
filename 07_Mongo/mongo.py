@@ -10,7 +10,7 @@ dataset link:http://api.nobelprize.org/v1/laureate.json
 import mechanism:
 the line db=connection["MonstrousGourd"] creates the database and collection=db["nobel_laureates"] create the collection
 the json data is then loaded using the json module
-Then insert the data gathered from the json using the insert method
+Then insert the data gathered from the json using the insert method which is executed once and has since been commented out
 '''
 import json
 import pymongo
@@ -19,8 +19,10 @@ connection=pymongo.MongoClient(SERVER_ADDR)
 db=connection["MonstrousGourd"]
 collection=db["nobel_laureates"]
 F=open('laureate.json')
-data=json.load(F)
-collection.insert(data)
+def insert():
+    data=json.load(F)
+    collection.insert_many(data)
+#insert()
 def categoryFinder(category):
     docs=collection.find({"prizes.category":category})
     print("All laureates for "+category)
@@ -48,11 +50,14 @@ def categoryminYearFinder(category, year):
     for doc in docs:
         print(doc)
     print("End of all laureates for "+category+" in the year "+str(year)+"\n"+"=====================================")
-categoryminYearFinder("literature",2017)
-def yearmultipleCategory(year,category0,category1):
-    docs=collection.find({"$and":[{"prizes.year":year},{"prizes.category":category0},{"prizes.category":category1}]})
-    print("All laureates in "+str(year)+" for "+ category0 +" and "+category1)
+categoryminYearFinder("physics","2017")
+def affiliationFinder(year,affiliation):
+    '''
+        This function tries to find affilations if the word is conatianed in the affliation
+    '''
+    docs=collection.find({"$and":[{"prizes.year":year},{"prizes.affiliations.name":{"$regex":affiliation}}]})
+    print("All laureates in "+str(year)+" associated with" + affiliation)
     for doc in docs:
         print(doc)
-    print("End of All laureates in "+str(year)+" for "+ category0 +" and "+category1+"\n"+"=====================================")
-yearmultipleCategory(2014,"physics","chemistry")
+    print("End of All laureates in "+str(year)+" associated with" + affiliation+"\n"+"=====================================")
+affiliationFinder("2015","University")
