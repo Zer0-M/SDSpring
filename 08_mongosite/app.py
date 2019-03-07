@@ -38,13 +38,27 @@ def categoryFinder(category,ip):
     for doc in docs:
         laureates.append(doc)
     return laureates
+def yearFinder(year,ip):
+    connection=pymongo.MongoClient(ip)
+    db=connection["ApacheHelicopters"] 
+    collection=db["nobel_laureates"] 
+    docs=collection.find({"prizes.year":year})
+    laureates=[]
+    for doc in docs:
+        laureates.append(doc)
+    return laureates
 
 @app.route("/results")
 def results():
-    query=request.args.get("query")
     ip=session.get("ip",None)
-    results=categoryFinder(query,ip)
-    return render_template("results.html",results=results[0])
+    results=[]
+    if "category" in request.args:
+        query=request.args.get("category")
+        results=categoryFinder(query,ip)
+    elif "year" in request.args:
+        query=request.args.get("year")
+        results=yearFinder(query,ip)
+    return render_template("results.html",results=results[:50])
 
 app.debug = True
 app.run()
