@@ -5,7 +5,6 @@ K #08 -- Ay Mon, Go Git It From Yer Flask
 2019-03-08
 '''
 from flask import Flask,render_template,request,session
-import mongo
 import pymongo
 import json
 import os
@@ -59,6 +58,6 @@ def results():
         query=request.args.get("year")
         results=yearFinder(query,ip)
     return render_template("results.html",results=results[:50])
-
-app.debug = True
-app.run()
+if __name__ == '__main__':
+    app.debug = True
+    app.run()
