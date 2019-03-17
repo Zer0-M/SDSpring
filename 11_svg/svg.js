@@ -1,8 +1,8 @@
 /*
 Mohammed Jamil
 SoftDev2 pd06
-K10 -- Ask Circles [Change || Die]
-2019-03-12 
+K11 -- Ask Circles [Change || Die] …While On The Go
+2019-03-18 
 */
 var pic=document.getElementById("vimage");
 var clearb=document.getElementById("clear");
