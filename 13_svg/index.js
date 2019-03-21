@@ -13,22 +13,9 @@ var x = d3.scaleLinear()
 var chart = d3.select(".chart")
     .attr("width", width);
 
-
-function type(d) {
-  d.value = +d.value; // coerce to number
-  return d;
-}
-d3.tsv("data.tsv", type, function(error,data) {
-  //tsv reading did not work
-  var data = [
-    {name: "Locke",    value:  4},
-    {name: "Reyes",    value:  8},
-    {name: "Ford",     value: 15},
-    {name: "Jarrah",   value: 16},
-    {name: "Shephard", value: 23},
-    {name: "Kwon",     value: 42}
-  ];
+d3.tsv("data.tsv", type).then(function(data) {
   x.domain([0, d3.max(data, function(d) { return d.value; })]);
+
   chart.attr("height", barHeight * data.length);
 
   var bar = chart.selectAll("g")
@@ -46,3 +33,8 @@ d3.tsv("data.tsv", type, function(error,data) {
       .attr("dy", ".35em")
       .text(function(d) { return d.value; });
 });
+
+function type(d) {
+  d.value = +d.value; // coerce to number
+  return d;
+}
