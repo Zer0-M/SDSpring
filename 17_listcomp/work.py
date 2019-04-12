@@ -24,11 +24,24 @@ def loopB():
         s = str(i) + '7'
         L.append(int(s))
     return L
+print(loopB())
+
 def compB():
     l=[int(str(i) + '7') for i in range(0,5)]
     return l
-print(loopB())
 print(compB())
+
+def loopC():
+    l=[]
+    for i in range(0,9):
+        l.append(int(i/3)* int(i%3))
+    return l
+print(loopC())
+
+def compC():
+    l=[int(i/3)* int(i%3) for i in range(0,9)]
+    return l
+print(compC())
 
 def loopD():
     l=[]
@@ -85,4 +98,5 @@ print(loopG([[0, 2], [1, 3], [2, 4]]))
 def compG(matrix):
     l=[[row[i] for row in matrix] for i in range(len(matrix[0]))]
     return l
+
 print(compG([[0, 2], [1, 3], [2, 4]]))
