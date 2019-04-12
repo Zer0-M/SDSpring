@@ -10,10 +10,10 @@ nums="1234567890"
 
 
 def minReq(p):
-    passw=[1 if x in uc else 2 if x in lc else 3 if x in nums else 0 for x in p]
-    return set([1,2,3]) == set(passw)
+    passw=[1 if x in uc else 2 if x in lc else 3 if x in nums else 0 for x in p]# identify the type of the char in the password
+    return set([1,2,3]).issubset(set(passw))# Check if it has all the 
 def strength(p):
-    passw=[1 if x in lc else 2 if x in uc else 3 if x in nums else 4 for x in p]
+    passw=[1 if x in lc else 2 if x in uc else 3 if x in nums else 4 for x in p] # identify the type of the char in the password
     passet=set(passw) #eliminates duplicates
     # Uppercase and lower case 2/10, number and one other type 3/10, symbol and one other type 5/10, and combinations of these cases sum up
     # So the perfect password includes all of the types
@@ -21,3 +21,4 @@ def strength(p):
     # Sum the unique values
     strenghtval=sum(set(strvals))
     return strenghtval
+print(minReq("Badqa4156;"))
