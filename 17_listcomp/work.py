@@ -1,3 +1,10 @@
+'''
+Mohammed Jamil,Kaitlin Wan
+SoftDev2 pd 6
+K16 -- PPFTLCW
+2019-04-14
+''' 
+
 def loopA():
     i = 0
     L =[]
@@ -58,8 +65,8 @@ def loopD():
 print(loopD())
 
 def compD():
-    L=[]
-    L = [ i for i in range(2,100) for x in range(2,100) if i%x==0 and x!=i]
+    L=[x for i in [2,3,5,7] for x in range(i**2,100,i)]#better sieve like way
+    #L = [ i for i in range(2,100) for x in range(2,100) if i%x==0 and x!=i]
     return list(set(L))
 print(compD())
 
@@ -81,9 +88,26 @@ def loopE():
 print(loopE())
 
 def compE():
-    L=[]
-    L = [ i for i in range(2,100) for x in range(2,50) if i%x==0 and x!=i]
-    return list(set(L))
+    sieve=[x for i in range(2,10) for x in range(i**2,100,i)]
+    L=[i for i in range(2,100) if i not in sieve]
+    return L
+print(compE())
+def loopF(n):
+    l=[]
+    nums=range(1,n+1)
+    for i in nums:
+        if n%i==0:
+            l.append(i)
+    return l
+
+print(loopF(10))
+
+def compF(n):
+    l=[i for i in range(1,n+1) if n%i==0]
+    return l
+print(compF(10))
+
+
 
 def loopG(matrix):
     l=[]
