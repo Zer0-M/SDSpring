@@ -9,6 +9,6 @@ def triples(n):
     return l
 print(triples(30))
 def quicksort(l):
-    L=[quicksort([x for x in l if x<l[0]])+[z for z in l if z==l[0]]+quicksort([y for y in l if y>l[0]]) if len(l)>1 else l]
-    return L[0]
+    L=[quicksort([x for x in l if x<l[0]])+[z for z in l if z==l[0]]+quicksort([y for y in l if y>l[0]]) if len(l)>1 else l][0]
+    return L
 print(quicksort([5,2,3,6,899,21,44,1,6,9,13,31,41,61,-13,536,2,-4]))
