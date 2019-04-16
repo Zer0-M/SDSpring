@@ -1,7 +1,7 @@
 '''
 Mohammed Jamil
 SoftDev2 pd 6
-K17 --
+K18 --
 2019-04-16
 '''
 def triples(n):
@@ -9,8 +9,6 @@ def triples(n):
     return l
 print(triples(30))
 def quicksort(l):
-    if len(l)>1:
-        L=quicksort([x for x in l if x<l[0]])+[l[0]]+quicksort([y for y in l if y>l[0]])
-        return L
-    return l
+    L=[quicksort([x for x in l if x<l[0]])+[l[0]]+quicksort([y for y in l if y>l[0]]) if len(l)>1 else l]
+    return L[0]
 print(quicksort([5,2,3,6,899,21,44,1,6,9]))
