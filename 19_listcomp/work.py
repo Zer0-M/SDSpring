@@ -32,7 +32,3 @@ def cart_product(a,b):
 
 print(cart_product(set([1,2]),set(["red", "white"])))
 print(cart_product(set([1,2,3]),set(["red", "white","blue"])))
-
-def power_set(a):
-    return [[list(a)[x] for x in range(i,i+j) if i+j<len(a)] for i in range(0,len(a)) for j in range(0,len(a)) ]
-print(power_set(set([1,2,3,4])))
